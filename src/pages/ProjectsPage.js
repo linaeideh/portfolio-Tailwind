@@ -54,7 +54,7 @@ const projects = [
       "Contact form integration",
     ],
     liveLink: "#",
-    githubLink: "https://github.com/linaeideh/portfolio",
+    githubLink: "https://github.com/linaeideh/portfolio-Tailwind",
   },
 ];
 

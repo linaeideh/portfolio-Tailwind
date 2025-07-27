@@ -4,49 +4,44 @@ import School from "../assets/images/School.webp";
 import University from "../assets/images/University.webp";
 import Udemy from "../assets/images/Udemy.webp";
 import VolunteerIcon from "../assets/images/khccc.png"; // صورة رمزية للتطوع (يمكنك استبدالها)
+
 const AboutPage = () => {
-
-
-
-    const educationData = [
-  {
-    category: "School",
-    logo: School,
-
-    details: {
-      name: "Sweileh Girls Secondary School",
-      degree: "General Secondary Education – Scientific Stream",
-      grade: "85.8%",
-      years: "2019-2020",
+  const educationData = [
+    {
+      category: "School",
+      logo: School,
+      details: {
+        name: "Sweileh Girls Secondary School",
+        degree: "General Secondary Education – Scientific Stream",
+        grade: "85.8%",
+        years: "2019-2020",
+      },
     },
-  },
-  {
-    category: "University",
-    logo: University,
-    details: {
-      name: "Al-Balqa Applied University",
-      degree: "Bachelor of Computer information Systems",
-      grade: "3.30 / 4",
-      years: "2020-2024",
+    {
+      category: "University",
+      logo: University,
+      details: {
+        name: "Al-Balqa Applied University",
+        degree: "Bachelor of Computer information Systems",
+        grade: "3.30 / 4",
+        years: "2020-2024",
+      },
     },
-  },
-  {
-    category: "Courses",
-    logo: Udemy,
-    details: {
-      name: "Udemy - Coursera",
-      degree: "Courses in React, js",
-      grade: "Completed",
-      years: "2024",
-      description:
-        "Learned foundational and advanced concepts in frontend and backend development.",
+    {
+      category: "Courses",
+      logo: Udemy,
+      details: {
+        name: "Udemy - Coursera",
+        degree: "Courses in React, js",
+        grade: "Completed",
+        years: "2024",
+        description:
+          "Learned foundational and advanced concepts in frontend and backend development.",
+      },
     },
+  ];
 
-  }
-
-  
-];
-const volunteerData = {
+  const volunteerData = {
     category: "Community Service",
     logo: VolunteerIcon,
     details: {
@@ -57,19 +52,24 @@ const volunteerData = {
       years: "2024-2025",
     },
   };
+
   useEffect(() => {
-  window.scrollTo(0, 0);
-}, []);
- useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("opacity-100", "translate-x-0");
-            entry.target.classList.remove("opacity-0", "translate-x-10", "-translate-x-10");
+            entry.target.classList.remove(
+              "opacity-0",
+              "translate-x-10",
+              "-translate-x-10"
+            );
           } else {
             entry.target.classList.remove("opacity-100", "translate-x-0");
-            // إعادة الحالة الابتدائية حسب جهة الحركة
             if (entry.target.classList.contains("left")) {
               entry.target.classList.add("opacity-0", "translate-x-10");
               entry.target.classList.remove("-translate-x-10");
@@ -94,7 +94,7 @@ const volunteerData = {
   return (
     <>
       {/* Profile Card */}
-      <div className="h-[800px] bg-gray-200 flex flex-wrap items-center justify-center rounded-lg">
+      <div className="h-[800px] bg-gray-200 flex flex-wrap items-center justify-center rounded-lg overflow-x-hidden">
         <div className="container lg:w-3/6 bg-white shadow-lg rounded-lg">
           <div className="h-52 overflow-hidden">
             <img
@@ -144,17 +144,17 @@ const volunteerData = {
       </div>
 
       {/* Timeline Section */}
-           <section className="bg-gray-100 py-12">
+      <section className="bg-gray-100 py-12 overflow-x-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Education</h2>
 
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full"></div>
 
-      {educationData.map((item, index) => {
-        const isLeft = index % 2 === 0;
-        return (
-            <div
+            {educationData.map((item, index) => {
+              const isLeft = index % 2 === 0;
+              return (
+                <div
                   key={index}
                   className={`timeline-item ${isLeft ? "left" : "right"} opacity-0 ${
                     isLeft
@@ -162,45 +162,55 @@ const volunteerData = {
                       : "-translate-x-10 mr-8 sm:mr-0 sm:w-1/2 sm:ml-auto pl-8 sm:pl-4"
                   } transition-all duration-700 ease-out mb-10`}
                 >
-            <div className="bg-white shadow-md rounded-lg p-6 relative">
-              <div
-                className={`absolute top-1/2 ${
-                  isLeft ? "-left-8" : "-right-8"
-                } w-4 h-4 bg-gray-500 rounded-full transform -translate-y-1/2`}
-              ></div>
+                  <div className="bg-white shadow-md rounded-lg p-6 relative">
+                    <div
+                      className={`absolute top-1/2 ${
+                        isLeft ? "-left-8" : "-right-8"
+                      } w-4 h-4 bg-gray-500 rounded-full transform -translate-y-1/2`}
+                    ></div>
 
-              <h3 className="flex gap-[20px] flex-nowrap justify-between  text-xl font-semibold text-gray-800 mb-2">
-                {item.category}
-                <img src={item.logo} alt={item.category} className="inline-block w-11 h-11" />
-              </h3>
+                    <h3 className="flex gap-[20px] flex-nowrap justify-between  text-xl font-semibold text-gray-800 mb-2">
+                      {item.category}
+                      <img
+                        src={item.logo}
+                        alt={item.category}
+                        className="inline-block w-11 h-11"
+                      />
+                    </h3>
 
-              <p className="text-lg font-medium text-gray-700">{item.details.name}</p>
-              <p className="text-gray-600">{item.details.degree}</p>
-              <p className="text-gray-600">Grade: {item.details.grade}</p>
-              <p className="text-gray-600">Years: {item.details.years}</p>
-              {item.details.description && (
-                <p className="text-gray-600 mt-2">{item.details.description}</p>
-              )}
-            </div>
+                    <p className="text-lg font-medium text-gray-700">{item.details.name}</p>
+                    <p className="text-gray-600">{item.details.degree}</p>
+                    <p className="text-gray-600">Grade: {item.details.grade}</p>
+                    <p className="text-gray-600">Years: {item.details.years}</p>
+                    {item.details.description && (
+                      <p className="text-gray-600 mt-2">{item.details.description}</p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        );
-      })}
-    </div>
-  </div>
-</section>
-{/* Divider */}
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <hr className="my-8 border-t-2 border-gray-300" />
-    </div>
-{/* Volunteering Section */}
-<section className="bg-gray-100 py-10 mb-11">
-        <div className="max-w-2xl mx-auto px-4 sm:px-5 lg:px-7">
+        </div>
+      </section>
+
+      {/* Divider */}
+      <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <hr className="my-8 border-t-2 border-gray-300" />
+      </div>
+
+      {/* Volunteering Section */}
+      <section className="bg-gray-100 py-10 mb-11 overflow-x-hidden">
+        <div className="max-w-2xl mx-auto px-4 sm:px-4 lg:px-2">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Volunteering</h2>
           <div className="timeline-item opacity-0 translate-y-10 transition-all duration-700 ease-out">
             <div className="bg-white shadow-md rounded-lg p-6">
               <h3 className="flex gap-[20px] flex-nowrap justify-between text-xl font-semibold text-gray-800 mb-2">
                 {volunteerData.category}
-                <img src={volunteerData.logo} alt={volunteerData.category} className="inline-block w-24 h-11" />
+                <img
+                  src={volunteerData.logo}
+                  alt={volunteerData.category}
+                  className="inline-block w-24 h-11"
+                />
               </h3>
               <p className="text-lg font-medium text-gray-700">{volunteerData.details.name}</p>
               <p className="text-gray-600">Role: {volunteerData.details.role}</p>
